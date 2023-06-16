@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "user-service"
+version = "0.1.0"
+description = ""
+authors = ["Hariharasudhan <hari@nineleaps.com>"]
+readme = "README.md"
+packages = [{include = "user_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.97.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+asyncpg = "^0.27.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.16"}
+pydantic = {extras = ["email"], version = "^1.10.9"}
+bcrypt = "^4.0.1"
+pyjwt = "^2.7.0"
+httpx = {extras = ["http2"], version = "^0.24.1"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

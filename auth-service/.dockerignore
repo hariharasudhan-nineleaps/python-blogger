@@ -1,0 +1,6 @@
+Dockerfile
+.env
+run_app.sh
+.python-version
+*.pyc
+__pycache__

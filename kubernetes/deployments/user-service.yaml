@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  namespace: blogger
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+      namespace: blogger
+    spec:
+      containers:
+        - name: user-service
+          image: hariharasudhan94/blogger-user-service:latest
+          ports:
+            - protocol: TCP
+              containerPort: 3002
+          env:
+            - name: DATABASE_URL
+              value: "postgresql+asyncpg://postgres:postgres@postgres.blogger:5432/blogger"
+            - name: AUTH_SERVICE_URL
+              value: "http://auth-service.blogger:3001"
