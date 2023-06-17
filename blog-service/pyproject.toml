@@ -1,22 +1,20 @@
 [tool.poetry]
-name = "user-service"
+name = "blog-service"
 version = "0.1.0"
 description = ""
 authors = ["Hariharasudhan <hari@nineleaps.com>"]
 readme = "README.md"
-packages = [{include = "user_service"}]
+packages = [{include = "blog_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
 fastapi = "^0.97.0"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
-asyncpg = "^0.27.0"
-sqlalchemy = {extras = ["asyncio"], version = "^2.0.16"}
-pydantic = {extras = ["email"], version = "^1.10.9"}
-bcrypt = "^4.0.1"
+pydantic = "^1.10.9"
+httpx = "^0.24.1"
 pyjwt = "^2.7.0"
-httpx = {extras = ["http2"], version = "^0.24.1"}
-newrelic = "^8.8.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.16"}
+asyncpg = "^0.27.0"
 
 
 [build-system]

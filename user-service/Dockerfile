@@ -54,7 +54,4 @@ EXPOSE ${PORT}
 
 USER app
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "3002"]
-
-
-
+CMD ["newrelic-admin", "run-program", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "3002"]
