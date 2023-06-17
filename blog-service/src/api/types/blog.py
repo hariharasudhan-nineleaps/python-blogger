@@ -9,9 +9,12 @@ class BlogItem(BaseModel):
     title: str
     description: str
     tags: List[str]
-    category: BlogCategoryItem
+    #category: BlogCategoryItem
+    category_id: str
     user_id: str
 
+    class Config:
+        orm_mode = True
 
 class BlogCreateRequest(BaseModel):
     title: str

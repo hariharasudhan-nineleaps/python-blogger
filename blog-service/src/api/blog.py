@@ -11,21 +11,22 @@ from src.auth import get_current_user
 
 from src.api.types.response import APIResponse
 from src.api.types.blog import BlogItem
+from src.models.blog import Blog
 
 router = APIRouter(prefix="/blogs")
 
 
 @router.post("", response_model=APIResponse[Any, None])
 async def create_blog(request_body: BlogCreateRequest, session: Annotated[AsyncSession, Depends(get_db)], user: Annotated[TokenData, Depends(get_current_user)]):
-    db_data = {
-        **request_body.dict(),
-        "id": uuid.uuid4().hex,
-        "user_id": user.user_id
-    }
-    async with session.begin():
-        pass
+    db_data = { **request_body.dict(),"id": uuid.uuid4().hex,"user_id": user.user_id }
     
-    return APIResponse(data=db_data)
+    blog = Blog(**db_data)
+    async with session.begin():
+        session.add(blog)
+        await session.commit()
+        
+    res_data = BlogItem.from_orm(blog)
+    return APIResponse(data=res_data)
 
 
 @router.get("/{blog_id}")

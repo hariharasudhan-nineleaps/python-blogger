@@ -29,8 +29,8 @@ class Blog(Base):
     user_id: Mapped[str] = mapped_column(String(100), index=True)
 
     category_id: Mapped[int] = mapped_column(ForeignKey(f"{BLOG_CATEGORY_TABLE_NAME}.id"))
-    category: Mapped["BlogCategory"] = relationship(back_populates="blogs")
+    category: Mapped["BlogCategory"] = relationship()
 
 
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
-    updated_at: Mapped[datetime.datetime] = mapped_column(server_onupdate=func.now())
+    updated_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now(), server_onupdate=func.now())
